@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".activity.MouseActivity"
+    >
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line1_mouse_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.01"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line1_mouse_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_keyboard_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.21"  />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_gyroscope_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.27"  />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_gyroscope_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.47"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_macros_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.53"  />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_macros_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.73"  />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_camera_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.79"  />
+
+
+    <Button
+        android:id="@+id/mouse_button1"
+        android:tag="@string/key_keyboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_mouse_keyboard_up"
+        android:text="@string/Keyboard"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_start"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_touch_left"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_keyboard_end"
+        />
+
+    <Button
+        android:id="@+id/mouse_button2"
+        android:tag="@string/key_gyroscope"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_mouse_gyroscope_up"
+        android:text="@string/Gyroscope"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_start"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_gyroscope_start"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_gyroscope_end"
+        />
+    <Button
+        android:id="@+id/mouse_button3"
+        android:tag="@string/key_macros"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_mouse_macros_up"
+        android:text="@string/Macros"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_start"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_macros_start"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_macros_end"
+        />
+    <Button
+        android:id="@+id/mouse_button4"
+        android:tag="@string/key_camera"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_mouse_camera_up"
+        android:text="@string/Camera"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_start"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_camera_start"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_touch_right"
+        />
+
+
+<!--    速度显示内容-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line1_mouse_wheel_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.14"  />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line1_mouse_pointer_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19"  />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line1_mouse_touch_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.24"  />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/WheelSpeed"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_end"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_wheel_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_touch_left"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_keyboard_end"
+
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/PointerSpeed"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_wheel_end"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_pointer_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_touch_left"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_keyboard_end"
+
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/Sensitivity"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_pointer_end"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_touch_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_touch_left"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_keyboard_end"
+
+        />
+
+    <SeekBar
+        android:id="@+id/mouse_wheel"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="10"
+        android:progress="1"
+        android:progressDrawable="@drawable/styles_seek_bar_one"
+        android:thumb="@drawable/image_mouse_wheel"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_end"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_wheel_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_keyboard_end"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_touch_right"
+
+        />
+
+    <SeekBar
+        android:id="@+id/mouse_pointer"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="10"
+        android:progress="1"
+        android:progressDrawable="@drawable/styles_seek_bar_one"
+        android:thumb="@drawable/image_mouse_pointer"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_wheel_end"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_pointer_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_keyboard_end"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_touch_right"
+
+        />
+    <SeekBar
+        android:id="@+id/mouse_sensitivity"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="10"
+        android:progress="1"
+        android:progressDrawable="@drawable/styles_seek_bar_two"
+        android:thumb="@drawable/image_mouse_not_touch"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_pointer_end"
+        app:layout_constraintBottom_toBottomOf="@id/line1_mouse_touch_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_keyboard_end"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_touch_right"
+
+        />
+<!--    触摸显示内容-->
+    <!--    引导参考线底边-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_touch_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <!--    引导参考-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_touch_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_touch_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.99" />
+
+
+    <RelativeLayout
+        android:id="@+id/touch_zone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_touch_background"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/line1_mouse_touch_end"
+        app:layout_constraintBottom_toBottomOf="@id/line_mouse_button_left_right_start"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_touch_left"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_touch_right"
+        >
+
+        <ImageView
+            android:id="@+id/mouse_touch_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/image_mouse_not_touch"
+
+            />
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_mouse_button_left_right_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+
+
+    <Button
+        android:id="@+id/mouse_button5"
+        android:tag="@string/key_mouse_left"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/LeftClick"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/styles_mouse_buttons"
+        app:layout_constraintTop_toTopOf="@id/line_mouse_button_left_right_start"
+        app:layout_constraintBottom_toBottomOf="@id/line_mouse_touch_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_touch_left"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_gyroscope_end"
+        />
+
+    <Button
+        android:id="@+id/mouse_button6"
+        android:tag="@string/key_mouse_right"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/RightClick"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/styles_mouse_buttons"
+        app:layout_constraintTop_toTopOf="@id/line_mouse_button_left_right_start"
+        app:layout_constraintBottom_toBottomOf="@id/line_mouse_touch_end"
+        app:layout_constraintLeft_toLeftOf="@id/line_mouse_macros_start"
+        app:layout_constraintRight_toRightOf="@id/line_mouse_touch_right"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,210 @@
+
+#include "SockeServer.h"
+#include <string.h>
+#include <sys/param.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_system.h"
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "esp_log.h"
+#include "nvs_flash.h"
+#include "esp_netif.h"
+
+#include "lwip/err.h"
+#include "lwip/sockets.h"
+#include "lwip/sys.h"
+#include <lwip/netdb.h>
+
+// #include <fcntl.h>
+
+static const char *TAG = "TcpServer";
+
+
+
+
+
+/**
+ * 收到客户端的数据时回复一下
+*/
+void ServerReply(const int sock)
+{
+    int len;
+    char rx_buffer[128];
+
+    do {
+        /**接收recv*/
+        len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
+        if (len < 0) {
+            ESP_LOGE(TAG, "接收时发生错误: errno %d", errno);
+        } else if (len == 0) {
+            ESP_LOGW(TAG, "连接已关闭");
+        } else {
+            rx_buffer[len] = 0; // 将收到的任何内容以空终止并将其视为字符串
+            ESP_LOGI(TAG, "已收到 %d 字节: %s", len, rx_buffer);
+
+        /**发送 send*/
+            int to_write = len;
+            while (to_write > 0) {
+                int written = send(sock, rx_buffer + (len - to_write), to_write, 0);
+                if (written < 0) {
+                    ESP_LOGE(TAG, "发送过程中发生错误: errno %d", errno);
+                    return;
+                }
+                to_write -= written;
+            }
+        }
+        len=0;
+    } while (len > 0);
+     ESP_LOGW(TAG, "到没到这儿");
+}
+
+
+void TcpServerTask(void *pvParameters)
+{
+    /**
+     * 一个基本的socket建立顺序是
+        Server端： socket(),  bind(), listen(),  accept(),  recv(),  recvfrom(),  recvmsg()
+        Client端： socket(), connect(),  send(),  sendto(),  sendmsg()
+        参考网址：https://www.nongnu.org/lwip/2_0_x/group__socket.html
+        socket()用于创建一个socket描述符
+        bind()函数把一个地址族中的特定地址赋给socket
+        调用listen()来监听这个socket，如果客户端这时调用connect()发出连接请求，服务器端就会接收到这个请求。
+        TCP服务器端依次调用socket()、bind()、listen()之后，就会监听指定的socket地址了。
+        TCP客户端依次调用socket()、connect()之后就想TCP服务器发送了一个连接请求。
+        TCP服务器监听到这个请求之后，就会调用 accept() 函数取接收请求，这样连接就建立好了。
+        之后就可以开始网络I/O操作了，即类同于普通文件的读写I/O操作。
+    */ 
+    char addr_str[128];
+    int addr_family = AF_INET;
+    int ip_protocol = 0;
+    int keepAlive = 1;
+    int keepIdle = KEEPALIVE_IDLE;
+    int keepInterval = KEEPALIVE_INTERVAL;
+    int keepCount = KEEPALIVE_COUNT;
+    struct sockaddr_storage dest_addr;
+
+    
+    struct sockaddr_in *dest_addr_ip4 = (struct sockaddr_in *)&dest_addr;
+        dest_addr_ip4->sin_addr.s_addr = htonl(INADDR_ANY);
+        dest_addr_ip4->sin_family = AF_INET;
+        dest_addr_ip4->sin_port = htons(PORT);
+        ip_protocol = IPPROTO_IP;
+  
+   /**
+    int socket(int domain, int type, int protocol);
+    服务器根据地址类型（ipv4,ipv6）、socket类型、协议创建socket。
+    domain:协议族，常用的有 AF_INET 、AF_INET6、AF_LOCAL、AF_ROUTE其中AF_INET代表使用ipv4地址
+    type:socket类型，常用的socket类型有，SOCK_STREAM、SOCK_DGRAM、SOCK_RAW、SOCK_PACKET、SOCK_SEQPACKET等
+    protocol:协议。常用的协议有，IPPROTO_TCP、IPPTOTO_UDP、IPPROTO_SCTP、IPPROTO_TIPC等
+    */
+    int listen_sock = socket(addr_family, SOCK_STREAM, ip_protocol); 
+    if (listen_sock < 0) {
+        ESP_LOGE(TAG, "无法创建套接字: errno %d", errno);
+        vTaskDelete(NULL);
+        return;
+    }
+    int opt = 1;
+    setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));   //设置套接口的选项
+
+    ESP_LOGI(TAG, "套接字创建成功");
+
+    /**
+    int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+    把一个地址族中的特定地址赋给socket
+    sockfd:socket描述字，也就是socket引用
+    addr:要绑定给sockfd的协议地址
+    addrlen:地址的长度
+        通常服务器在启动的时候都会绑定一个地址（如ip地址+端口号），用于提供服务。
+    有些端口号是约定俗成的不能乱用，如80用作http，502用作modbus。
+    */
+    int err = bind(listen_sock, (struct sockaddr *)&dest_addr, sizeof(dest_addr));
+    if (err != 0) {
+        ESP_LOGE(TAG, "套接字无法绑定: errno %d", errno);
+        ESP_LOGE(TAG, "IPPROTO: %d", addr_family);
+        goto Error;
+    }
+    ESP_LOGI(TAG, "套接字已绑定，端口 %d", PORT);
+
+
+    /**
+    int listen(int sockfd, int backlog);
+    监听socket
+    sockfd:要监听的socket描述字
+    backlog:相应socket可以排队的最大连接个数 
+    */
+    err = listen(listen_sock, 1);
+    if (err != 0) {
+        ESP_LOGE(TAG, "监听时发生错误: errno %d", errno);
+        goto Error;
+    }
+
+    /**
+    int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+    连接某个socket
+    sockfd:客户端的socket描述字
+    addr:服务器的socket地址
+    addrlen:socket地址的长度
+    */
+    struct sockaddr_storage source_addr; // 对于 IPv4 或 IPv6 来说都足够大
+    socklen_t addr_len = sizeof(source_addr);
+
+
+
+
+
+    while (1) {
+
+        ESP_LOGI(TAG, "套接字监听");
+        /**
+        int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
+        TCP服务器监听到客户端请求之后，调用accept()函数取接收请求
+        sockfd:服务器的socket描述字
+        addr:客户端的socket地址
+        addrlen:socket地址的长度
+        */
+        
+        // int sock = accept(listen_sock, (struct sockaddr *)&source_addr, &addr_len);
+
+        //   ESP_LOGE(TAG, "accept = %d", sock);
+           
+        // if (sock < 0) {
+        //     ESP_LOGE(TAG, "无法接受连接: errno %d", errno);
+        //     break;
+        // }
+        
+        // setsockopt(sock, SOL_SOCKET, SO_KEEPALIVE, &keepAlive, sizeof(int)); //设置连接为活动状态
+        // setsockopt(sock, IPPROTO_TCP, TCP_KEEPIDLE, &keepIdle, sizeof(int));//活动空闲时间
+        // setsockopt(sock, IPPROTO_TCP, TCP_KEEPINTVL, &keepInterval, sizeof(int));//探测包间隔时间
+        // setsockopt(sock, IPPROTO_TCP, TCP_KEEPCNT, &keepCount, sizeof(int));//重试计数
+
+
+        // // 将ip地址转换为字符串
+        // if (source_addr.ss_family == PF_INET) {
+        //     inet_ntoa_r(((struct sockaddr_in *)&source_addr)->sin_addr, addr_str, sizeof(addr_str) - 1);
+        // }
+
+        // ESP_LOGI(TAG, "套接字接受的 IP 地址： %s", addr_str);
+
+        // ServerReply(sock);
+
+        // shutdown(sock, 0);// 只关闭发送方向而不关闭读取方向
+        // close(sock);
+
+ 
+           
+
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+
+    }
+
+ Error:
+    /**
+    int close(int fd);
+    socket标记为以关闭 ，使相应socket描述字的引用计数-1，
+    当引用计数为0的时候，触发TCP客户端向服务器发送终止连接请求。
+    */
+    close(listen_sock);
+    vTaskDelete(NULL);
+
+}

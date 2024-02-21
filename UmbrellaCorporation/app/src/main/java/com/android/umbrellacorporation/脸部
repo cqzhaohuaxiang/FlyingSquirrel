@@ -1,0 +1,58 @@
+
+faceBlendshapes()数据结构
+取数据     faceResults.faceBlendshapes().get()[0][27].categoryName()
+          faceResults.faceBlendshapes().get()[0][27].score()
+Optional[[[
+<Category "_neutral" (displayName= score=1.7906158E-6 index=0)>,中立
+<Category "browDownLeft" (displayName= score=0.058466155 index=1)>,左眉毛向下
+<Category "browDownRight" (displayName= score=0.04460398 index=2)>, 右眉毛向下
+<Category "browInnerUp" (displayName= score=0.020868056 index=3)>, 眉心向上
+<Category "browOuterUpLeft" (displayName= score=0.08458269 index=4)>, 左眉毛外侧向上
+<Category "browOuterUpRight" (displayName= score=0.11721145 index=5)>, 右眉毛外侧向上
+<Category "cheekPuff" (displayName= score=7.0903516E-6 index=6)>, 脸颊泡芙
+<Category "cheekSquintLeft" (displayName= score=4.1720705E-7 index=7)>, 脸颊向左倾斜
+<Category "cheekSquintRight" (displayName= score=6.9750564E-7 index=8)>, 脸颊向右倾斜
+<Category "eyeBlinkLeft" (displayName= score=0.12257465 index=9)>, 左眨眼
+<Category "eyeBlinkRight" (displayName= score=0.15627985 index=10)>, 右眨眼
+<Category "eyeLookDownLeft" (displayName= score=0.13602893 index=11)>, 左眼睛向下看
+<Category "eyeLookDownRight" (displayName= score=0.14504755 index=12)>, 右眼睛向下看
+<Category "eyeLookInLeft" (displayName= score=0.070385255 index=13)>, 眼睛向左看
+<Category "eyeLookInRight" (displayName= score=0.061864216 index=14)>, 眼睛向右看
+<Category "eyeLookOutLeft" (displayName= score=0.089082465 index=15)>, 
+<Category "eyeLookOutRight" (displayName= score=0.11055984 index=16)>,  眼睛向右看
+<Category "eyeLookUpLeft" (displayName= score=0.06363867 index=17)>, 
+<Category "eyeLookUpRight" (displayName= score=0.06943613 index=18)>, 
+<Category "eyeSquintLeft" (displayName= score=0.3042553 index=19)>,  眼睛眯着左
+<Category "eyeSquintRight" (displayName= score=0.3571291 index=20)>,
+<Category "eyeWideLeft" (displayName= score=0.0048734676 index=21)>, 眼宽左
+<Category "eyeWideRight" (displayName= score=0.004537874 index=22)>, 
+<Category "jawForward" (displayName= score=8.504006E-6 index=23)>, 下颚前移
+<Category "jawLeft" (displayName= score=1.2655444E-4 index=24)>, 下颌左
+<Category "jawOpen" (displayName= score=0.0068026455 index=25)>, 下颚打开
+<Category "jawRight" (displayName= score=0.002215252 index=26)>, 下颌右
+<Category "mouthClose" (displayName= score=2.7443844E-4 index=27)>, 嘴巴关闭
+<Category "mouthDimpleLeft" (displayName= score=0.002895832 index=28)>, 嘴巴酒窝左
+<Category "mouthDimpleRight" (displayName= score=0.0040278365 index=29)>, 
+<Category "mouthFrownLeft" (displayName= score=0.0024216566 index=30)>, 嘴巴 皱着眉头 左
+<Category "mouthFrownRight" (displayName= score=0.003066475 index=31)>, 
+<Category "mouthFunnel" (displayName= score=9.699565E-5 index=32)>,嘴漏斗
+<Category "mouthLeft" (displayName= score=3.0908594E-4 index=33)>, 嘴巴左
+<Category "mouthLowerDownLeft" (displayName= score=2.2891186E-4 index=34)>, 嘴巴左下角
+<Category "mouthLowerDownRight" (displayName= score=2.5730926E-4 index=35)>, 
+<Category "mouthPressLeft" (displayName= score=0.054271325 index=36)>,  嘴巴 按左键
+<Category "mouthPressRight" (displayName= score=0.02713146 index=37)>, 
+<Category "mouthPucker" (displayName= score=0.037796047 index=38)>, 嘴巴皱巴巴的
+<Category "mouthRight" (displayName= score=0.0036488862 index=39)>, 嘴巴对
+<Category "mouthRollLower" (displayName= score=0.38380665 index=40)>, 口滚动下
+<Category "mouthRollUpper" (displayName= score=0.03736405 index=41)>, 嘴卷上
+<Category "mouthShrugLower" (displayName= score=0.33014137 index=42)>, 嘴巴耸耸肩
+<Category "mouthShrugUpper" (displayName= score=0.01112802 index=43)>, 嘴巴耸耸肩上
+<Category "mouthSmileLeft" (displayName= score=1.0127152E-5 index=44)>, 嘴巴微笑左
+<Category "mouthSmileRight" (displayName= score=9.968282E-6 index=45)>, 
+<Category "mouthStretchLeft" (displayName= score=2.7043378E-4 index=46)>, 嘴巴伸展左
+<Category "mouthStretchRight" (displayName= score=0.005525027 index=47)>, 
+<Category "mouthUpperUpLeft" (displayName= score=7.0900473E-6 index=48)>, 嘴巴上左
+<Category "mouthUpperUpRight" (displayName= score=5.3017848E-6 index=49)>, 
+<Category "noseSneerLeft" (displayName= score=1.1874043E-6 index=50)>, 鼻子冷笑左
+<Category "noseSneerRight" (displayName= score=6.845067E-7 index=51)>
+]]]

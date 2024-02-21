@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">耗儿</string>
+    <string name="RightClick">右键</string>
+    <string name="LeftClick">左键</string>
+    <string name="ClickUP">抬起</string>
+    <string name="ClickDOWN">按下</string>
+    <string name="Keyboard">键盘</string>
+    <string name="Gyroscope">陀螺仪</string>
+    <string name="Macros">宏</string>
+    <string name="Camera">相机</string>
+    <string name="WheelSpeed">滚轮速度</string>
+    <string name="PointerSpeed">指针速度</string>
+    <string name="Sensitivity">灵敏度</string>
+    <string name="CameraFlip">镜头翻转</string>
+    <string name="GPUReasoning">GPU推理</string>
+    <string name="CPUReasoning">CPU推理</string>
+    <string name="HandIdentify">爪子</string>
+    <string name="FaceIdentify">脸蛋</string>
+    <string name="ReasoningTime">推理时间</string>
+    <string name="NoDevices">服务连接不成功</string>
+    <string name="NetworkError">网络错误</string>
+
+    <string name="NoHand">没有发现爪子</string>
+    <string name="NoFace">没有发现脸蛋</string>
+
+
+</resources>

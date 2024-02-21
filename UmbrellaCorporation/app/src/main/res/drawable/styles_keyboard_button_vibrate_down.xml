@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:top="2dp"
+        >
+        <shape>
+            <solid android:color="@color/button_center" />
+            <!--        圆角设置-->
+            <corners android:radius="5dp" />
+            <!--        边框设置-->
+            <stroke
+                android:width="2dp"
+                android:color="@color/button_frame"
+                />
+        </shape>
+
+    </item>
+
+
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/image_keyboard_vibrate_down"/>
+    </item>
+
+
+
+
+</layer-list>

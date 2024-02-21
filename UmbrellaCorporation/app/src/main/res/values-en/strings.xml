@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Flying Squirrel</string>
+    <string name="RightClick">Right Click</string>
+    <string name="LeftClick">Left Click</string>
+    <string name="ClickUP">UP</string>
+    <string name="ClickDOWN">DOWN</string>
+    <string name="Keyboard">Keyboard</string>
+    <string name="Gyroscope">Gyroscope</string>
+    <string name="Macros">Macros</string>
+    <string name="Camera">Camera</string>
+    <string name="WheelSpeed">Wheel</string>
+    <string name="PointerSpeed">Pointer</string>
+    <string name="Sensitivity">Sensitivity</string>
+    <string name="CameraFlip">Flip</string>
+    <string name="GPUReasoning">GPU</string>
+    <string name="CPUReasoning">CPU</string>
+    <string name="HandIdentify">Hand</string>
+    <string name="FaceIdentify">Face</string>
+    <string name="ReasoningTime">Reasoning Time</string>
+    <string name="NoHand">No Hand</string>
+    <string name="NoFace">No Face</string>
+    <string name="NoDevices">No Devices</string>
+    <string name="NetworkError">Network Error</string>
+
+</resources>

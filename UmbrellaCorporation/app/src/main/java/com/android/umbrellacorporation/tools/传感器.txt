@@ -1,0 +1,116 @@
+https://developer.android.google.cn/guide/topics/sensors/sensors_overview?hl=zh-cn
+Android 平台支持三大类传感器：
+
+    动态传感器
+        这类传感器测量三个轴向上的加速力和旋转力。这个类别中包含加速度计、重力传感器、陀螺仪和旋转矢量传感器。
+
+    环境传感器
+        这类传感器测量各种环境参数，如环境气温、气压、照度和湿度。这个类别中包含气压计、光度计和温度计。
+
+    位置传感器
+        这类传感器测量设备的物理位置。这个类别中包含屏幕方向传感器和磁力计。
+
+确定设备上有哪些传感器。
+确定单个传感器的特性，例如最大量程、制造商、功率要求和分辨率。
+获取原始传感器数据并定义获取传感器数据的最低频率。
+注册和取消注册用于监控传感器变化的传感器事件监听器。
+
+传感器	                    类型	            说明	                                                                                                                         常见用途
+TYPE_ACCELEROMETER	        硬件	            测量在所有三个物理轴向（x、y 和 z）上施加在设备上的加速力（包括重力），以 m/s2 为单位。	                                                 动态检测（摇晃、倾斜等）。
+TYPE_MAGNETIC_FIELD	        硬件	            测量所有三个物理轴向（x、y、z）上的环境地磁场，以 μT 为单位。	                                                                         创建罗盘。
+TYPE_GYROSCOPE	            硬件	            测量设备在三个物理轴向（x、y 和 z）上的旋转速率，以 rad/s 为单位。	                                                                 旋转检测（旋转、转动等）。
+TYPE_GRAVITY	            软件或硬件	    测量在所有三个物理轴向（x、y、z）上施加在设备上的重力，单位为 m/s2。	                                                                 动态检测（摇晃、倾斜等）。
+TYPE_LINEAR_ACCELERATION	软件或硬件	    测量在所有三个物理轴向（x、y 和 z）上施加在设备上的加速力（不包括重力），以 m/s2 为单位。	                                                 监测单个轴向上的加速度。
+TYPE_ROTATION_VECTOR	    软件或硬件	    通过提供设备旋转矢量的三个元素来检测设备的屏幕方向。	                                                                                 动态检测和旋转检测。
+TYPE_ORIENTATION （已弃用）	软件	            测量设备围绕所有三个物理轴（x、y、z）旋转的度数。从 API 级别 3 开始，您可以结合使用重力传感器、地磁场传感器和 getRotationMatrix() 方法来获取设备的倾角矩阵和旋转矩阵。	确定设备位置。
+
+TYPE_LIGHT	                硬件	            测量环境光级（照度），以 lx 为单位。	                                                                                             控制屏幕亮度。
+TYPE_PROXIMITY	            硬件	            测量物体相对于设备显示屏幕的距离，以 cm 为单位。该传感器通常用于确定手机是否被举到人的耳边。	                                             通话过程中手机的位置。
+
+TYPE_PRESSURE	            硬件	            测量环境气压，以 hPa 或 mbar 为单位。	                                                                                         监测气压变化。
+TYPE_PROXIMITY	            硬件	            测量物体相对于设备显示屏幕的距离，以 cm 为单位。该传感器通常用于确定手机是否被举到人的耳边。	                                             通话过程中手机的位置。
+TYPE_RELATIVE_HUMIDITY	    硬件	            测量环境的相对湿度，以百分比 (%) 表示。	                                                                                         监测露点、绝对湿度和相对湿度。
+TYPE_TEMPERATURE	        硬件	            测量设备的温度，以摄氏度 (°C) 为单位。该传感器的实现因设备而异。在 API 级别 14 中，该传感器已被 TYPE_AMBIENT_TEMPERATURE 传感器取代	         监测温度。
+TYPE_AMBIENT_TEMPERATURE	硬件	            以摄氏度 (°C) 为单位测量环境室温。请参见下面的备注。	                                                                                 监测气温。
+
+
+• 陀螺仪的强项在于测量设备自身的旋转运动。对设备自身运动更擅长。但不能确定设备的方位。
+• 加速计的强项在于测量设备的受力情况。对设备相对外部参考物(比如，地面)的运动更擅长。但用来测量设备相对于地面的摆放姿势，则精确度不高。
+• 磁力计的强项在于定位设备的方位。可以测量出当前设备与东南西北四个方向上的夹角。
+
+
+移动传感器
+这类传感器测量三个轴向上的加速力和旋转力。这个类别包括加速度计、重力传感器、陀螺仪和旋转矢量传感器
+
+传感器	                                传感器事件数据	                说明	                                        度量单位
+TYPE_ACCELEROMETER	                    SensorEvent.values[0]	    沿 x 轴的加速力（包括重力）。	                米/秒2
+                                        SensorEvent.values[1]	    沿 y 轴的加速力（包括重力）。
+                                        SensorEvent.values[2]	    沿 z 轴的加速力（包括重力）。
+
+TYPE_ACCELEROMETER_UNCALIBRATED	        SensorEvent.values[0]	    沿 X 轴测量的加速度，没有任何偏差补偿。	        米/秒2
+                                        SensorEvent.values[1]	    沿 Y 轴测量的加速度，没有任何偏差补偿。
+                                        SensorEvent.values[2]	    沿 Z 轴测量的加速度，没有任何偏差补偿。
+                                        SensorEvent.values[3]	    沿 X 轴测量的加速度，并带有估算的偏差补偿。
+                                        SensorEvent.values[4]	    沿 Y 轴测量的加速度，并带有估算的偏差补偿。
+                                        SensorEvent.values[5]	    沿 Z 轴测量的加速度，并带有估算的偏差补偿。
+
+TYPE_GRAVITY	                        SensorEvent.values[0]	    沿 x 轴的重力。	                            米/秒2
+                                        SensorEvent.values[1]	    沿 y 轴的重力。
+                                        SensorEvent.values[2]	    沿 z 轴的重力。
+
+TYPE_GYROSCOPE	                        SensorEvent.values[0]	    绕 x 轴的旋转速率。	                        弧度/秒
+                                        SensorEvent.values[1]	    绕 y 轴的旋转速率。
+                                        SensorEvent.values[2]	    绕 z 轴的旋转速率。
+
+TYPE_GYROSCOPE_UNCALIBRATED	            SensorEvent.values[0]	    绕 x 轴的旋转速率（无漂移补偿）。	                弧度/秒
+                                        SensorEvent.values[1]	    绕 y 轴的旋转速率（无漂移补偿）。
+                                        SensorEvent.values[2]	    绕 z 轴的旋转速率（无漂移补偿）。
+                                        SensorEvent.values[3]	    绕 x 轴的估算漂移。
+                                        SensorEvent.values[4]	    绕 y 轴的估算漂移。
+                                        SensorEvent.values[5]	    绕 z 轴的估算漂移。
+
+TYPE_LINEAR_ACCELERATION	            SensorEvent.values[0]	    沿 x 轴的加速力（不包括重力）。	                米/秒2
+                                        SensorEvent.values[1]	    沿 y 轴的加速力（不包括重力）。
+                                        SensorEvent.values[2]	    沿 z 轴的加速力（不包括重力）。
+
+TYPE_ROTATION_VECTOR	                SensorEvent.values[0]	    沿 x 轴的旋转矢量分量 (x * sin(θ/2))。	        无单位
+                                        SensorEvent.values[1]	    沿 y 轴的旋转矢量分量 (y * sin(θ/2))。
+                                        SensorEvent.values[2]	    沿 z 轴的旋转矢量分量 (z * sin(θ/2))。
+                                        SensorEvent.values[3]	    旋转矢量的标量分量 ((cos(earth/2))。1
+
+TYPE_SIGNIFICANT_MOTION	                不适用	                    不适用	                                    不适用
+
+TYPE_STEP_COUNTER	                    SensorEvent.values[0]	    激活传感器时自上次重新启动以来用户行走的步数。	    步数
+TYPE_STEP_DETECTOR	                    不适用	                    不适用	                                    不适用
+
+
+
+位置传感器
+
+这类传感器测量设备的物理位置。这个类别包括方向传感器和磁力计。
+传感器	                                传感器事件数据	                说明	                                        度量单位
+TYPE_GAME_ROTATION_VECTOR	            SensorEvent.values[0]	    沿 x 轴的旋转矢量分量 (x * sin(θ/2))。	        无单位
+                                        SensorEvent.values[1]	    沿 y 轴的旋转矢量分量 (y * sin(θ/2))。
+                                        SensorEvent.values[2]	    沿 z 轴的旋转矢量分量 (z * sin(θ/2))。
+
+TYPE_GEOMAGNETIC_ROTATION_VECTOR	    SensorEvent.values[0]	    沿 x 轴的旋转矢量分量 (x * sin(θ/2))。	        无单位
+                                        SensorEvent.values[1]	    沿 y 轴的旋转矢量分量 (y * sin(θ/2))。
+                                        SensorEvent.values[2]	    沿 z 轴的旋转矢量分量 (z * sin(θ/2))。
+
+TYPE_MAGNETIC_FIELD	                    SensorEvent.values[0]	    沿 x 轴的地磁场强度。	                        微秒
+                                        SensorEvent.values[1]	    沿 y 轴的地磁场强度。
+                                        SensorEvent.values[2]	    沿 z 轴的地磁场强度。
+
+TYPE_MAGNETIC_FIELD_UNCALIBRATED	    SensorEvent.values[0]	    沿 x 轴的地磁场强度（无硬铁校准功能）。	        微秒
+                                        SensorEvent.values[1]	    沿 y 轴的地磁场强度（无硬铁校准功能）。
+                                        SensorEvent.values[2]	    沿 z 轴的地磁场强度（无硬铁校准功能）。
+                                        SensorEvent.values[3]	    沿 x 轴的铁偏差估算。
+                                        SensorEvent.values[4]	    沿 y 轴的铁偏差估算。
+                                        SensorEvent.values[5]	    沿 z 轴的铁偏差估算。
+
+TYPE_ORIENTATION（不推荐）	            SensorEvent.values[0]	    方位角（绕 z 轴的角度）。	                    度
+                                        SensorEvent.values[1]	    俯仰角（绕 x 轴的角度）。
+                                        SensorEvent.values[2]	    倾侧角（绕 y 轴的角度）。
+                                        
+TYPE_PROXIMITY	                        SensorEvent.values[0]	    与物体的距离。2	                            厘米
+

@@ -1,0 +1,37 @@
+private fun handReasoningInit(context :Context){
+        cameraButtonHand.background =
+            ContextCompat.getDrawable(this,R.drawable.styles_mouse_buttons_stop)
+
+        // 设置常规识别选项，包括使用的线程数 handHardware
+        val hardware   =  if(handHardware) Delegate.GPU else Delegate.CPU
+        parameter.setParameter("cameraHandHardware", handHardware)
+
+        val baseOptionBuilder = BaseOptions.builder()
+        baseOptionBuilder.setDelegate(hardware)   //选择硬件
+        baseOptionBuilder.setModelAssetPath("hand.task") //选择模型
+        val baseOptions = baseOptionBuilder.build()
+
+        val optionsBuilder =
+            HandLandmarker.HandLandmarkerOptions.builder()
+               .setBaseOptions(baseOptions)//设置基本选项
+               .setMinHandDetectionConfidence(0.5f)
+               .setMinTrackingConfidence(0.5f) //
+               .setMinHandPresenceConfidence(0.5f)
+               .setRunningMode(RunningMode.LIVE_STREAM)
+               .setNumHands(2)//设置检测到最大手数
+               .setResultListener(this::returnHandResult)// （设置结果侦听器）
+               .setErrorListener(this::returnError)// （设置错误监听器）
+
+        val options = optionsBuilder.build()
+
+        handRecognizer =  HandLandmarker.createFromOptions(context, options)
+
+        cameraButtonHand.background =
+            ContextCompat.getDrawable(this,R.drawable.styles_mouse_buttons_down)
+    }
+
+
+if(handButton)  handRecognizer?.detectAsync(mpImage, frameTime)
+
+
+ handRecognizer =  HandLandmarker.createFromOptions(context, options)

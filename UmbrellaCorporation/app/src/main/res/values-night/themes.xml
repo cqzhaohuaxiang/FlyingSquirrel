@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.UmbrellaCorporation" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <!-- 状态栏颜色. -->
+        <!--        <item name="android:statusBarColor">@color/me</item>-->
+
+        <!--        指示该窗口的操作栏是否应覆盖应用程序内容的标志,如果窗口没有操作栏，则不执行任何操作。-->
+        <item name="android:windowActionBarOverlay">true</item>
+
+        <!--        窗口操作栏-->
+        <item name="windowActionBar">false</item>
+        <!--        窗口无标题-->
+        <item name="windowNoTitle">true</item>
+        <!--        窗口操作栏覆盖-->
+        <item name="windowActionBarOverlay">true</item>
+        <!--        窗口操作模式叠加-->
+        <item name="windowActionModeOverlay">true</item>
+
+        <!--        指示该窗口是否应填满整个屏幕的标志-->
+        <item name="android:windowFullscreen">true</item>
+
+
+        <!--        文本-->
+        <item name="android:textColor">@color/button_glyph</item>
+        <!--        字体大小 (主要是键盘用) 其他地方用字体单设置 -->
+        <item name="android:textSize">8sp</item>
+        <!--        不自动大写-->
+        <item name="android:textAllCaps">false</item>
+        <!--    可绘制用作整体窗口背景-->
+        <!--        <item name="android:windowBackground">@null</item>-->
+        <!--    此 Drawable 覆盖在 Window 内容区域的前景上，通常在标题下方放置阴影-->
+        <!--        <item name="android:windowContentOverlay">@null</item>-->
+
+    </style>
+</resources>

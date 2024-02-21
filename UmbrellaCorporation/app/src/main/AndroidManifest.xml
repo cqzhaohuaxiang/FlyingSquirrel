@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- 声明功能 要有摄像头-->
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <!-- 声明功能 要有加速度计 -->
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
+    <!-- 声明功能 要有陀螺仪 -->
+    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
+
+    <!-- 声明权限 摄像头权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 振动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!--    网络权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+
+    <application
+
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UmbrellaCorporation"
+        tools:targetApi="31">
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".activity.KeyboardActivity"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            >
+        </activity>
+
+        <activity
+            android:name=".activity.CameraActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+
+        <activity
+            android:name=".activity.MouseActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <service
+            android:name=".service.BackgroundServices"
+            android:exported="false"
+            android:enabled="true"
+            >
+        </service>
+
+    </application>
+
+
+
+</manifest>
+
+
+    <!--    去掉横竖屏切换时的转屏动画-->
+    <!--    android:rotationAnimation="seamless"-->
+    <!--    https://blog.csdn.net/bsfding/article/details/106019914-->

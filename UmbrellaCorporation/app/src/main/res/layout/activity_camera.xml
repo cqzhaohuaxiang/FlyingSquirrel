@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cameraContainer"
+    tools:context=".activity.CameraActivity">
+
+
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleType="fitStart" />
+
+
+    <com.android.umbrellacorporation.activity.ReasoningResultsView
+        android:id="@+id/reasoningOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <!--脸-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_face_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.01" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_face_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.21" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_face_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.89" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_face_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.99" />
+
+    <Button
+        android:id="@+id/cameraButtonFace"
+        android:tag="@string/key_camera_face"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_camera_faces"
+        android:text="@string/FaceIdentify"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@+id/line_face_top"
+        app:layout_constraintBottom_toTopOf="@+id/line_face_bottom"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_face_star"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_face_end"
+        />
+
+    <!--手-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_hand_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.27" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_hand_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.47" />
+    <Button
+        android:id="@+id/cameraButtonHand"
+        android:tag="@string/key_camera_hand"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_camera_hand"
+        android:text="@string/HandIdentify"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@+id/line_face_top"
+        app:layout_constraintBottom_toTopOf="@+id/line_face_bottom"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_hand_star"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_hand_end"
+        />
+
+    <!--推理-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_reasoning_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.53" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_reasoning_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.73" />
+    <Button
+        android:id="@+id/cameraButtonHardware"
+        android:tag="@string/key_camera_reasoning"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_camera_cpu"
+        android:text="@string/CPUReasoning"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@+id/line_face_top"
+        app:layout_constraintBottom_toTopOf="@+id/line_face_bottom"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_reasoning_star"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_reasoning_end"
+        />
+
+    <!--镜头翻转-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_flip_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.79" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_flip_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.99" />
+    <Button
+        android:id="@+id/cameraButtonFlip"
+        android:tag="@string/key_camera_flip"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/styles_mouse_buttons"
+        android:drawableTop="@drawable/image_camera_flens"
+        android:text="@string/CameraFlip"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@+id/line_face_top"
+        app:layout_constraintBottom_toTopOf="@+id/line_face_bottom"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_flip_star"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_flip_end"
+        />
+
+
+
+
+    <!--灵敏度-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_sensitivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.84" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/Sensitivity"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/line_camera_sensitivity"
+        app:layout_constraintBottom_toTopOf="@+id/line_face_top"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_face_star"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_face_end"
+        />
+    <SeekBar
+        android:id="@+id/cameraSensitivity"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="10"
+        android:progress="1"
+        android:progressDrawable="@drawable/styles_seek_bar_two"
+        android:thumb="@drawable/image_mouse_not_touch"
+        app:layout_constraintTop_toTopOf="@+id/line_camera_sensitivity"
+        app:layout_constraintBottom_toTopOf="@+id/line_face_top"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_face_end"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_flip_end"
+        />
+    <!--指针速度-->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line_camera_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.79" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/PointerSpeed"
+        android:textSize="11sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@+id/line_camera_speed"
+        app:layout_constraintBottom_toTopOf="@+id/line_camera_sensitivity"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_face_star"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_face_end"
+        />
+    <SeekBar
+        android:id="@+id/cameraPointer"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="10"
+        android:progress="1"
+        android:progressDrawable="@drawable/styles_seek_bar_one"
+        android:thumb="@drawable/image_mouse_pointer"
+        app:layout_constraintTop_toTopOf="@+id/line_camera_speed"
+        app:layout_constraintBottom_toTopOf="@+id/line_camera_sensitivity"
+        app:layout_constraintStart_toStartOf="@+id/line_camera_face_end"
+        app:layout_constraintEnd_toStartOf="@+id/line_camera_flip_end"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
